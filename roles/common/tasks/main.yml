@@ -1,0 +1,6 @@
+- name: Update the system
+  yum:
+    name: "*"
+    state: latest
+  become: true
+  tags: common
