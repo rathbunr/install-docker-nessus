@@ -1,0 +1,17 @@
+- name: Load Nessus Docker image
+  docker_image:
+    name: tenableio/nessus
+    source: pull
+  become: true
+  tags: nessus
+
+- name: Start Nessus container
+  docker_container:
+    name: nessus
+    image: tenableio/nessus
+    ports:
+      - "8834:8834"
+    state: started
+    pull: yes
+  become: true
+  tags: nessus
