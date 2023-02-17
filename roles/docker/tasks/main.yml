@@ -1,0 +1,22 @@
+- name: Install Docker
+  yum:
+    name: docker
+    state: present
+  become: true
+  tags: docker
+
+- name: Start and enable the Docker service
+  systemd:
+    name: docker
+    state: started
+    enabled: true
+  become: true
+  tags: docker
+
+- name: Add the current user to the docker group
+  user:
+    name: "{{ ansible_user }}"
+    group: docker
+    append: true
+  become: true
+  tags: docker
